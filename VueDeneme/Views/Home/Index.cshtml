@@ -1,0 +1,54 @@
+﻿@using VueDeneme.Models
+@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+
+<div id="app">
+    <p>{{ message }}</p>
+
+<input type="button"  v-on:click="reverse" class="btn btn-outline-dark" id="btnGetir" value="Getir" />
+</div>
+
+<div id="app-4">
+    <ol>
+        <li v-for="todo in todos">
+            {{ todo.text }}
+        </li>
+    </ol>
+</div>
+
+
+<script>
+
+    var app4 = new Vue({
+  el: '#app-4',
+  data: {
+    todos: [
+      { text: 'Bilgisayar Mühendisliği' },
+      { text: 'Endüstri Mühendisliği' },
+      { text: 'Elektronik Mühendisliği' }
+    ]
+  }
+})
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        },
+        methods: {
+            reverse: function () {
+                this.message = "deeme"
+            }
+        }
+    })
+</script>
