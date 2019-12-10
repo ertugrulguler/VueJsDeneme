@@ -15,40 +15,67 @@
 <div id="app">
     <p>{{ message }}</p>
 
-<input type="button"  v-on:click="reverse" class="btn btn-outline-dark" id="btnGetir" value="Getir" />
+    <input type="button" v-on:click="reverse" class="btn btn-outline-dark" id="btnGetir" value="Getir" />
+    <ul>
+        <li v-for="todo in todos">
+            {{todo.text}}
+        </li>
+    </ul>
+    <ul>
+        <li v-for="user in users">
+            {{user.name}} ({{user.id}})
+        </li>
+    </ul>
 </div>
 
-<div id="app-4">
-    <ol>
-        <li v-for="todo in todos">
-            {{ todo.text }}
-        </li>
-    </ol>
-</div>
+@*<div id="app-4">
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+    </div>*@
+
+@section Scripts{
 
 
 <script>
 
-    var app4 = new Vue({
-  el: '#app-4',
-  data: {
-    todos: [
-      { text: 'Bilgisayar Mühendisliği' },
-      { text: 'Endüstri Mühendisliği' },
-      { text: 'Elektronik Mühendisliği' }
-    ]
-  }
-})
+    //var app4 = new Vue({
+    //    el: '#app-4',
+    //    data: {
+    //        todos: [
+    //            { text: 'Bilgisayar Mühendisliği' },
+    //            { text: 'Endüstri Mühendisliği' },
+    //            { text: 'Elektronik Mühendisliği' }
+    //        ]
+    //    }
+    //})
 
     var app = new Vue({
         el: '#app',
         data: {
-            message: 'Hello Vue!'
+            message: 'Hello Vue!',
+            todos: [],
+            users:[]
         },
         methods: {
             reverse: function () {
-                this.message = "deeme"
+                this.message = "deneme";
+                this.todos = [
+                    { text: 'Bilgisayar Mühendisliği' },
+                    { text: 'Endüstri Mühendisliği' },
+                    { text: 'Elektronik Mühendisliği' }
+                ];
+
+                vm = this;
+
+                $.getJSON("https://jsonplaceholder.typicode.com/users", function (data) {
+                    console.log(data);
+                    vm.users = data;
+                });
             }
         }
     })
 </script>
+}
